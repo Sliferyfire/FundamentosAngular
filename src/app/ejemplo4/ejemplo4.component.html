@@ -1,0 +1,23 @@
+<div style="margin: 20px">
+  <h1>Lista de Tareas (Ejemplo de formuarios reactivos)</h1>
+  <p>
+    Tarea: <input type="text" [formControl]="tarea"/>
+  </p>
+  <p>
+    <button type="button" class="btn btn-primary" (click)="agregarTarea()">Agregar</button>
+  </p>
+
+  <ol>
+    @for (tar of listaTareas; track $index) {
+      <li>
+        {{tar}} <a (click)="borrarTarea($index)" routerLink="/ejemplo4">Borrar</a>
+      </li>
+    }
+  </ol>
+
+  <p>
+    <button type="button" class="btn btn-danger" (click)="borrarTareas()">Borrar todas las tareas</button>
+  </p>
+</div>
+
+<router-outlet></router-outlet>

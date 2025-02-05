@@ -1,0 +1,70 @@
+<div class="p-5 content">
+  <h1>{{title}}</h1>
+  <div>
+    <h4>Interpolacion</h4>
+    <p>Nombre: {{nombre}}</p>
+    <p>Años de servicio: {{aniosServicio}}</p>
+    <p>Email: {{email}}</p>
+    <p>Activo: {{activo}}</p>
+    <p>Uno + uno: {{1 + 1}}</p>
+    <p>{{estaActivo()}}</p>
+    <p>Total de alumnos: {{sumarAlumnos()}}</p>
+  </div>
+  <p></p>
+  <div>
+    <h4>Sentencia If</h4>
+    <p>Años de servicio</p>
+    @if (aniosServicio >= 20){
+      <p>Tiene mucha antiguedad</p>
+    } @else {
+      <p>No tiene mucha antiguedd</p>
+    }
+    <p>Productos</p>
+  </div>
+  <p></p>
+  <div>
+    <h4>Sentencia For</h4>
+    <p>Listado de productos</p>
+    <table>
+      @for (producto of productos; track producto.id) {
+        <tr>
+          <td>{{producto.id}}</td>
+          <td>{{producto.descripcion}}</td>
+          <td>{{producto.precio}}</td>
+        </tr>
+      }
+    </table>
+  </div>
+  <p></p>
+  <div>
+    <h4>Sentencia Switch</h4>
+    @switch (numero){
+      @case (1){
+        <p>UNO</p>
+      }
+      @case (2){
+        <p>DOS</p>
+      }
+      @case (3){
+        <p>TRES</p>
+      }
+      @default {
+        <p>No se genero un numero</p>
+      }
+    }
+  </div>
+  <p></p>
+  <div>
+    <h4>Captura de eventos</h4>
+    <h5>{{contador}}</h5>
+    <button type="button" class="btn btn-success" (click)="incrementarContador()">Incrementar</button>
+    <button type="button" class="btn btn-danger" (click)="decrementarContador()">Decrementar</button>
+  </div>
+  <p></p>
+  <div>
+    <h4>Binding</h4>
+    <button type="button" [disabled]="valorBtn">Guardar</button>
+    <button type="button" (click)="cambiarValor()">Cambiar valor</button>
+  </div>
+</div>
+

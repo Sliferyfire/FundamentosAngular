@@ -1,0 +1,13 @@
+.formaDado{
+  width: 5rem;
+  height: 5rem;
+  font-size: 3rem;
+  background-color: purple;
+  color: white;
+  border-radius: 1rem;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  text-align: center;
+}

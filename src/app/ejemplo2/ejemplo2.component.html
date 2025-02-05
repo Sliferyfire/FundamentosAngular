@@ -1,0 +1,12 @@
+<div style="text-align: center; padding: 10px;">
+  <h2>Juego de dados</h2>
+  <app-dado valorDado="{{valor1}}"></app-dado>
+  <app-dado valorDado="{{valor2}}"></app-dado>
+  <app-dado valorDado="{{valor3}}"></app-dado>
+  <hr />
+  <button type="button" class="btn btn-primary" (click)="tirarDados()">Tirar dados</button>
+  <hr>
+  <h4>{{resultado}}</h4>
+</div>
+
+<router-outlet></router-outlet>

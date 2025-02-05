@@ -1,0 +1,82 @@
+<div style="margin: 20px">
+
+  <h1>{{title}}</h1>
+  <form [formGroup]="toDoForm" (ngSubmit)="agregarTarea()">
+    <div class="row g-3 align-items-center col-sm-4">
+      <p>
+        <label for="nombreTarea" class="form-label">Tarea:</label>
+        <input class="form-control" type="text" id="nombreTarea" formControlName="nombreTarea"/>
+        @if (enviado && toDoForm.get("nombreTarea")?.errors?.['required']) {
+          <span class="form-text" style="color: red">Este campo es obligatorio</span>
+        }
+        @if (enviado && toDoForm.get("descripcionTarea")?.errors?.['minlength']) {
+          <span class="form-text" style="color: red">El nombre de tarea debe tener un minimo de 5 caracteres</span>
+        }
+      </p>
+      <p>
+        <label for="nombreTarea" class="form-label">Descripcion: </label>
+        <input class="form-control" type="text" formControlName="descripcionTarea" />
+        @if (enviado && toDoForm.get("descripcionTarea")?.errors?.['required']) {
+          <span class="form-text" style="color: red">Este campo es obligatorio</span>
+        }
+        @if (enviado && toDoForm.get("descripcionTarea")?.errors?.['minlength']) {
+          <span class="form-text" style="color: red">La descripcion debe tener un minimo de 10 caracteres</span>
+        }
+      </p>
+      <p>
+        <label for="nombreTarea" class="form-label">Fecha:</label>
+        <input class="form-control" type="date" formControlName="fechaTarea" min="{{fechaHoy}}" />
+        @if (enviado && toDoForm.get("fechaTarea")?.errors?.['required']) {
+          <span class="form-text" style="color: red">Este campo es obligatorio</span>
+        }
+      </p>
+      <p>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+      </p>
+    </div>
+  </form>
+
+  @if (toDoList.length != 0 ){
+    <table class="table">
+      <thead>
+        <th>Tarea</th>
+        <th>Descripcion</th>
+        <th>Fecha</th>
+        <th>Estado</th>
+        <th>Eliminar</th>
+      </thead>
+      <tbody>
+        @for (tarea of toDoList; track $index) {
+          <tr [ngClass]="{'table-secondary': tarea.completado}">
+            <td>{{tarea.nombreTarea}}</td>
+            <td>{{tarea.descripcionTarea}}</td>
+            <td>{{tarea.fechaTarea}}</td>
+            <td>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" [checked]="tarea.completado" (change)="toggleCompletado($index)">
+                <label class="form-check-label" for="flexCheckDefault">
+                  @if (tarea.completado) {
+                    Completado
+                  } @else {
+                    No Completado
+                  }
+                </label>
+              </div>
+            </td>
+            <td>
+              <a class="btn btn-warning" (click)="borrarTarea($index)" routerLink="ejemplo4">Borrar</a>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <p>
+      <button type="button" class="btn btn-danger" (click)="borrarTareas()">Borrar todas las tareas</button>
+    </p>
+  }
+
+</div>
+
+
+
+<router-outlet></router-outlet>
